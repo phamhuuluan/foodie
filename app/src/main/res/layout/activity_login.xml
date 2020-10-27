@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="32dp">
+        android:padding="45dp">
         <LinearLayout
             android:layout_weight="7"
             android:layout_width="match_parent"
@@ -36,9 +36,9 @@
                 android:textStyle="normal"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
                 android:textColorHint="#f0f0f0"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:background="@drawable/duongvien"
-                android:hint=" Email"
+                android:hint="  Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </EditText>
@@ -47,9 +47,9 @@
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:textColorHint="#f0f0f0"
                 android:layout_marginTop="16dp"
-                android:textSize="20sp"
+                android:textSize="16sp"
                 android:background="@drawable/duongvien"
-                android:hint=" Password"
+                android:hint="  Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
             </EditText>
@@ -57,7 +57,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <Button
-                    android:textSize="16sp"
+                    android:id="@+id/btn_forgot_password"
+                    android:textSize="12sp"
                     android:layout_marginTop="16dp"
                     android:textColor="#f0f0f0"
                     android:background="#00000000"
@@ -76,7 +77,8 @@
                 android:background="#B4B58A3F"
                 android:layout_below="@id/edt_password"
                 android:layout_width="match_parent"
-                android:layout_height="70dp">
+                android:layout_height="50dp">
+
             </Button>
             <LinearLayout
                 android:layout_below="@id/btn_login"
@@ -129,12 +131,20 @@
                 android:id="@+id/btn_register"
                 android:textColor="#f0f0f0"
                 android:layout_marginTop="50dp"
+                android:textSize="12sp"
                 android:layout_gravity="center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00000000"
                 android:text="Create New Account">
             </Button>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

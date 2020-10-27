@@ -12,90 +12,99 @@
         android:padding="30dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-        android:layout_weight="7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textStyle="bold"
-            android:textSize="60sp"
-            android:gravity="center"
-            android:textColor="#f0f0f0"
-            android:text="Foodie"
+        <LinearLayout
+            android:layout_weight="7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </TextView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_weight="2"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <EditText
-            android:id="@+id/edt_name"
-            android:textStyle="normal"
-            android:drawableLeft="@drawable/ic_baseline_account_box_24"
-            android:textColorHint="#f0f0f0"
-            android:textSize="20sp"
-            android:background="@drawable/duongvien"
-            android:hint=" Name"
+            <TextView
+                android:textStyle="bold"
+                android:textSize="60sp"
+                android:gravity="center"
+                android:textColor="#f0f0f0"
+                android:text="Foodie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="2"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        </EditText>
-        <EditText
-            android:id="@+id/edt_phone_number"
-            android:drawableLeft="@drawable/ic_baseline_phone_24"
-            android:textColorHint="#f0f0f0"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:background="@drawable/duongvien"
-            android:hint=" Phone Number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
-        <EditText
-            android:id="@+id/edt_email"
-            android:drawableLeft="@drawable/ic_baseline_email_24"
-            android:textColorHint="#f0f0f0"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:background="@drawable/duongvien"
-            android:hint=" Email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
-        <EditText
-            android:id="@+id/edt_password"
-            android:drawableLeft="@drawable/ic_baseline_lock_24"
-            android:textColorHint="#f0f0f0"
-            android:layout_marginTop="16dp"
-            android:textSize="20sp"
-            android:background="@drawable/duongvien"
-            android:hint=" Password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        </EditText>
-
-        <Button
-            android:id="@+id/btn_register"
-            android:layout_marginTop="50dp"
-            android:textSize="20sp"
-            android:textColor="#f0f0f0"
-            android:text="Register"
-            android:background="#B4B58A3F"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-        </Button>
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_marginTop="10dp"
-            android:textSize="20sp"
-            android:textColor="#f0f0f0"
-            android:text="cancel"
-            android:background="#B4B58A3F"
-            android:layout_width="match_parent"
-            android:layout_height="60dp">
-        </Button>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/edt_name"
+                android:textStyle="normal"
+                android:drawableLeft="@drawable/ic_baseline_account_box_24"
+                android:textColorHint="#f0f0f0"
+                android:textSize="20sp"
+                android:background="@drawable/duongvien"
+                android:hint=" Name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+            <EditText
+                android:id="@+id/edt_email"
+                android:drawableLeft="@drawable/ic_baseline_email_24"
+                android:textColorHint="#f0f0f0"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:background="@drawable/duongvien"
+                android:hint="  Email"
+                android:maxLines="1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+            <EditText
+                android:id="@+id/edt_password"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/ic_baseline_lock_24"
+                android:textColorHint="#f0f0f0"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:background="@drawable/duongvien"
+                android:hint="  Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+            <EditText
+                android:id="@+id/edt_password_confirm"
+                android:maxLines="1"
+                android:drawableLeft="@drawable/ic_baseline_lock_24"
+                android:textColorHint="#f0f0f0"
+                android:layout_marginTop="16dp"
+                android:textSize="20sp"
+                android:background="@drawable/duongvien"
+                android:hint="  Confirn Password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </EditText>
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_marginTop="100dp"
+                android:textSize="20sp"
+                android:textColor="#f0f0f0"
+                android:text="Register"
+                android:background="#B4B58A3F"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Button>
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:textColor="#f0f0f0"
+                android:text="cancel"
+                android:background="#B4B58A3F"
+                android:layout_width="match_parent"
+                android:layout_height="50dp">
+            </Button>
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|bottom"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
