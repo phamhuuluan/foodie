@@ -1,8 +1,10 @@
 package com.t3h.foodie;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,10 +16,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.regex.Pattern;
 
@@ -26,19 +37,42 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button btnLogin, btnRegister, btnForgotPassword;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
+    private GoogleSignInClient mGoogleSignInClient;
+    private final static int RC_SIGN_IN = 1;
+    private FirebaseAuth mAuth;
+    private SignInButton btnLoginGoogle;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser  user = mAuth.getCurrentUser();
+        if (user!=null){
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mAuth = FirebaseAuth.getInstance();
+        createRequest();
         initViews();
-        auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null){
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
-            finish();
-        }
     }
 
+    private void createRequest() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    @SuppressLint("WrongViewCast")
     private void initViews() {
         edtEmail = findViewById(R.id.edt_email);
         edtPassword= findViewById(R.id.edt_password);
@@ -46,9 +80,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         btnForgotPassword=findViewById(R.id.btn_forgot_password);
         btnLogin = findViewById(R.id.btn_login);
         btnRegister = findViewById(R.id.btn_register);
+        btnLoginGoogle = findViewById(R.id.sign_in_button);
         btnLogin.setOnClickListener(this);
         btnForgotPassword.setOnClickListener(this);
         btnRegister.setOnClickListener(this);
+        btnLoginGoogle.setOnClickListener(this);
     }
 
     @Override
@@ -98,6 +134,46 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                       }
                     }
                 });
+            case R.id.sign_in_button:
+                signIn();
+                break;
         }
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            Toast.makeText(LoginActivity.this,"Đăng nhập thành công",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            startActivity(intent);
+            FirebaseGoogleAuth(account);
+        } catch (ApiException e) {
+           Toast.makeText(LoginActivity.this,"Đăng nhập thất bại " + e.getMessage(),Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
+    private void FirebaseGoogleAuth(GoogleSignInAccount account) {
+        AuthCredential authCredential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
+        mAuth.signInWithCredential(authCredential).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(LoginActivity.this,"Thành công", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user = mAuth.getCurrentUser();
+                }else{
+                    Toast.makeText(LoginActivity.this,"Thất bại", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }
