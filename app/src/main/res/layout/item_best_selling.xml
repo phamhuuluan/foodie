@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:background="@drawable/canh_nho"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="250dp">
+    <ImageView
+        android:id="@+id/im_best_sell"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_do_an"
+        android:layout_width="match_parent"
+        android:layout_height="150dp">
+    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_best_sell_name"
+                android:textColor="#06177C"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:text="hamburgers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tv_best_sell_price"
+                android:textColor="#f0f0f0"
+                android:textSize="10sp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/category_cusstom"
+                android:text="4500.000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+            </TextView>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_best_sell_address"
+        android:textColor="#29347A"
+        android:text="66 Út Tịch, Phường 4, Tân Bình, Thành phố Hồ Chí Minh "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </TextView>
+</LinearLayout>
