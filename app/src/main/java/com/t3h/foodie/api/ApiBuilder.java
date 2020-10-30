@@ -16,7 +16,7 @@ public class ApiBuilder {
                 .create();
 
         api = new Retrofit.Builder()
-                .baseUrl("http://192.168.1.163/")
+                .baseUrl("http://192.168.1.184/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(Api.class);

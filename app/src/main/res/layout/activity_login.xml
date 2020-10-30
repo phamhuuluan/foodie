@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <EditText
+                android:lines="1"
                 android:id="@+id/edt_email"
                 android:textStyle="normal"
                 android:drawableLeft="@drawable/ic_baseline_email_24"
@@ -43,6 +44,8 @@
                 android:layout_height="wrap_content">
             </EditText>
             <EditText
+                android:lines="1"
+                android:inputType="textPassword"
                 android:id="@+id/edt_password"
                 android:drawableLeft="@drawable/ic_baseline_lock_24"
                 android:textColorHint="#f0f0f0"
