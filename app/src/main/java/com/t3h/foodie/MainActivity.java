@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +22,7 @@ import com.t3h.foodie.model.ShoppingCart;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button btnSignOut;
+    private ImageButton btnSignOut;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
     public static ArrayList<ShoppingCart> arrShc;

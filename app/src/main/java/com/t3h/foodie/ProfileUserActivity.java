@@ -2,7 +2,9 @@ package com.t3h.foodie;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -33,19 +35,29 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 public class ProfileUserActivity<acct> extends AppCompatActivity implements View.OnClickListener, LocationListener {
-    private ImageView imBack,imAvatar;
-    private Button btnSignOut, btnAdress;
+    private ImageView imBack,imAvatar,imSignuot;
+    private Button btnAdress,btnSaveAdress;
     private FirebaseAuth auth;
     private FirebaseUser user;
     private Uri imgUser;
     private TextView tvName, tvEmail, tvPhoneNumber, tvAdress,tvBlo;
     private LocationManager locationManager;
+    private JSONObject saved = new JSONObject();
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private  List<Address> addresse;
+    private String adrees;
+
+    private static final String TEXT = "text";
+    private static final String SHARED_PREF = "shared";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,8 +79,9 @@ public class ProfileUserActivity<acct> extends AppCompatActivity implements View
         imBack = findViewById(R.id.im_back);
         imAvatar = findViewById(R.id.im_avt);
         btnAdress = findViewById(R.id.btn_adress);
-        btnSignOut = findViewById(R.id.btn_sign_out);
-        btnSignOut.setOnClickListener(this);
+        imSignuot = findViewById(R.id.im_sign_out);
+        btnSaveAdress = findViewById(R.id.btn_save);
+        imSignuot.setOnClickListener(this);
         imBack.setOnClickListener(this);
         btnAdress.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -76,9 +89,33 @@ public class ProfileUserActivity<acct> extends AppCompatActivity implements View
                getLocation();
            }
        });
+        btnSaveAdress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveData();
+            }
+        });
+        loadData();
+        updateViews();
+    }
 
+    private void updateViews() {
+        tvAdress.setText(adrees);
+    }
+
+    private void loadData() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        adrees = sharedPreferences.getString(TEXT, "");
 
     }
+
+    private void saveData() {
+        sharedPreferences = getSharedPreferences(SHARED_PREF, MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        editor.putString(TEXT, tvAdress.getText().toString());
+        editor.apply();
+    }
+
     private void CheckPermission(){
         if (ContextCompat.checkSelfPermission(ProfileUserActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED){
@@ -121,12 +158,11 @@ public class ProfileUserActivity<acct> extends AppCompatActivity implements View
                 startActivity(intent);
                 finish();
                 break;
-            case R.id.btn_sign_out:
+            case R.id.im_sign_out:
                 auth.signOut();
                 Intent intentSignOut = new Intent(ProfileUserActivity.this, LoginActivity.class);
                 startActivity(intentSignOut);
                 break;
-
         }
     }
 
@@ -135,9 +171,8 @@ public class ProfileUserActivity<acct> extends AppCompatActivity implements View
         Toast.makeText(this, ""+location.getLatitude()+","+location.getLongitude(), Toast.LENGTH_SHORT).show();
         try {
             Geocoder geocoder = new Geocoder(ProfileUserActivity.this, Locale.getDefault());
-            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
-            String address = addresses.get(0).getAddressLine(0);
-
+            addresse = geocoder.getFromLocation(location.getLatitude(),location.getLongitude(),1);
+            String address = addresse.get(0).getAddressLine(0);
             tvAdress.setText(address);
 
         }catch (Exception e){
