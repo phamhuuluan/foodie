@@ -36,7 +36,6 @@
             android:padding="8dp"
             android:src="@drawable/ic_baseline_format_list_bulleted_24" />
     </LinearLayout>
-
     <FrameLayout
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
@@ -46,7 +45,6 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"

@@ -1,5 +1,7 @@
 package com.t3h.foodie.api;
 
+import android.database.DatabaseUtils;
+
 import com.t3h.foodie.model.Category;
 import com.t3h.foodie.model.Product;
 
@@ -31,9 +33,11 @@ public interface Api {
     Call<List<Product>> getListFavorite();
 
     @POST("foodie/updateFavorite.php")
-    Call<List<Product>> updateFavorite(@QueryMap Map<String, Integer> map);
+    Call<List<Product>> updateFavorite(@QueryMap Map<String, Object> map);
 //    Call<String> updateFavorite(@Field("favorite") String favorite, @Field("id") String id );
 
     @GET("foodie/search.php")
     Call< List<Product>> getSearch(@Query("key") String keyword);
+    @GET("foodie/insert.php")
+    Call<Object> insertId(@QueryMap Map<String, Object> mapint);
 }

@@ -109,8 +109,7 @@
                     android:orientation="horizontal"
                     android:layout_weight="1"
                     android:layout_height="wrap_content">
-                    <ImageView
-                        android:id="@+id/im_favorite"
+                    <ImageView android:id="@+id/im_favorite"
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -119,6 +118,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_gravity="center"
                         android:textSize="13sp"
+                        android:id="@+id/tv_cuont"
                         android:layout_width="wrap_content"
                         android:text="favorite"
                         android:fontFamily="@font/roboto_regular"
@@ -147,6 +147,7 @@
                         android:layout_height="wrap_content" />
                 </LinearLayout>
                 <LinearLayout
+                    android:layout_marginLeft="12dp"
                     android:layout_width="wrap_content"
                     android:orientation="horizontal"
                     android:layout_weight="1"

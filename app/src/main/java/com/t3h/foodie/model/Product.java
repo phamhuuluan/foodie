@@ -27,15 +27,13 @@ public class Product {
         isSelected = selected;
     }
 
-
-    public Product(int id, String name, Integer price, String image, String address, String favorite, int id_category) {
+    public Product(int id, String name, Integer price, String image, String address, String favorite) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
         this.address = address;
         this.favorite = favorite;
-        this.id_category = id_category;
     }
 
     public int getId() {
@@ -84,5 +82,13 @@ public class Product {
 
     public void setFavorite(String favorite) {
         this.favorite = favorite;
+    }
+
+    public int getId_category() {
+        return id_category;
+    }
+
+    public void setId_category(int id_category) {
+        this.id_category = id_category;
     }
 }

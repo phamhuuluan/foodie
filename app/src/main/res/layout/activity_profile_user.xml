@@ -48,18 +48,9 @@
             android:text="Joey Tribbiani"
             android:textColor="@color/white"
             android:textSize="32sp" />
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif"
-            android:text="new york, usa"
-            android:textAllCaps="true"
-            android:textColor="@color/address"
-            android:textSize="14sp" />
+
         <ImageView
+            android:id="@+id/im_sign_out"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_alignParentRight="true"
@@ -67,24 +58,27 @@
             android:layout_marginTop="16dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_settings" />
+            android:src="@drawable/logout" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/rellay1">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="424dp"
             android:layout_centerInParent="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -148,15 +142,16 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Twitter"
+                    android:text="chưa nghĩ ra"
                     android:textColor="@color/headings"
                     android:textSize="13sp" />
 
                 <TextView
+                    android:id="@+id/tv_blo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="luan"
+                    android:text="+1-202-555-0157"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -165,19 +160,74 @@
                     android:layout_height="1dp"
                     android:layout_marginTop="15dp"
                     android:background="@color/grey" />
+
             </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="340dp"
+                android:layout_height="45dp"
+                android:layout_marginTop="4dp"
+                android:focusedByDefault="false">
+
+
+                <TextView
+                    android:id="@+id/tvdiachi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Adress"
+                    android:textColor="@color/headings"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/tv_diachi1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tvdiachi"
+                    android:fontFamily="sans-serif-light"
+                    android:lines="2"
+                    android:text="luan"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:layout_marginTop="12dp"
+                android:focusedByDefault="false"
+                android:padding="8dp">
+
+                <Button
+
+                    android:id="@+id/btn_adress"
+                    android:layout_width="141dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:background="#03A9F4"
+                    android:text="Add Address"
+                    android:textColor="#fff"
+                    android:textSize="16dp" />
+
+                <Button
+                    android:id="@+id/btn_save"
+                    android:layout_width="144dp"
+                    android:layout_height="37dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="39dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="0dp"
+                    android:layout_toRightOf="@+id/btn_adress"
+                    android:background="#03A9F4"
+                    android:text="Save"
+                    android:textColor="#fff"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
         </LinearLayout>
-        <Button
-            android:textColor="#ffffff"
-            android:background="#F60505"
-            android:layout_marginBottom="32dp"
-            android:layout_centerInParent="true"
-            android:layout_alignParentBottom="true"
-            android:id="@+id/btn_sign_out"
-            android:text="Sign Out"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-        </Button>
 
     </RelativeLayout>
 

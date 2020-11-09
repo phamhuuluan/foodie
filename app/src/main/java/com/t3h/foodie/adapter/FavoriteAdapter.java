@@ -4,6 +4,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,6 +22,11 @@ import java.util.List;
 public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.FavoriteHolder>{
     private LayoutInflater inflater;
     private List<Product> data;
+    private OnClickViewListener listener;
+
+    public FavoriteAdapter(OnClickViewListener listener) {
+        this.listener = listener;
+    }
 
     public FavoriteAdapter(LayoutInflater inflater) {
         this.inflater = inflater;
@@ -46,6 +52,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public void onBindViewHolder(@NonNull FavoriteHolder holder, int position) {
         final Product product = data.get(position);
         holder.bindView(product);
+        if (listener == null){
+            return;
+        }
+        holder.btnAddcard.setOnClickListener(view -> listener.clickAddCart(product));
     }
 
     @Override
@@ -56,6 +66,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
     public class FavoriteHolder extends RecyclerView.ViewHolder{
         private ImageView imFavoriteFood;
         private TextView tvFavoriteName, tvFavoritePrice, tvFavoriteAddress;
+        private Button btnAddcard;
 
         public FavoriteHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +74,7 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             tvFavoriteName = itemView.findViewById(R.id.tv_favorite_name);
             tvFavoritePrice = itemView.findViewById(R.id.tv_favorite_price);
             tvFavoriteAddress = itemView.findViewById(R.id.tv_favorite_address);
+            btnAddcard = itemView.findViewById(R.id.btn_addcard);
         }
         private void bindView(Product product){
             Picasso.get().load(product.getImage()).placeholder(R.drawable.file).error(R.drawable.bg_do_an).into(imFavoriteFood);
@@ -72,6 +84,10 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.Favori
             DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
             tvFavoritePrice.setText(decimalFormat.format(product.getPrice()) + " Đ");
             tvFavoriteAddress.setText(product.getAddress());
+
         }
+    }
+    public interface OnClickViewListener{
+        void clickAddCart(Product product);
     }
 }

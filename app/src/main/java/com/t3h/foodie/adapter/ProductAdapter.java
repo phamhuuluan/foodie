@@ -1,7 +1,5 @@
 package com.t3h.foodie.adapter;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,8 +86,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
 
             if (product.isSelected()){
                 imFavorite.setImageResource(R.drawable.ic_baseline_favorite_24);
+
                 imFavorite.setEnabled(false);
             }
+
 
         }
     }

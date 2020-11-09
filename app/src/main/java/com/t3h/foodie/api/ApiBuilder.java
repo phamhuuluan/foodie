@@ -2,7 +2,6 @@ package com.t3h.foodie.api;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -16,7 +15,7 @@ public class ApiBuilder {
                 .create();
 
         api = new Retrofit.Builder()
-                .baseUrl("http://199.191.192.104/")
+                .baseUrl("http://192.168.1.183:8888/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build()
                 .create(Api.class);

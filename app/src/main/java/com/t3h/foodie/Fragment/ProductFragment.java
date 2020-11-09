@@ -2,6 +2,7 @@ package com.t3h.foodie.Fragment;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,23 +16,25 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.t3h.foodie.MainActivity;
+import com.bumptech.glide.Glide;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.t3h.foodie.R;
 import com.t3h.foodie.adapter.ProductAdapter;
-import com.t3h.foodie.api.Api;
 import com.t3h.foodie.api.ApiBuilder;
-import com.t3h.foodie.model.Category;
 import com.t3h.foodie.model.Product;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ProductFragment extends Fragment implements ProductAdapter.OnClickViewListener {
+    private static final String TAG = "ProductFragment";
     private RecyclerView rcProduct;
     private ProductAdapter productAdapter;
     private Activity activity;
@@ -86,21 +89,23 @@ public class ProductFragment extends Fragment implements ProductAdapter.OnClickV
 
     @Override
     public void clickFavorite(Product product) {
-        Map<String, Integer> map = new HashMap<>();
-        map.put( "favorite", 1);
-        map.put("id", product.getId());
-        ApiBuilder.getInstance().updateFavorite(map).enqueue(new Callback<List<Product>>() {
+        GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(activity);
+        String userId = googleSignInAccount.getId();
+        int product_id = product.getId();
+        Map<String, Object> mapint = new HashMap<>();
+        mapint.put("user_firebase", userId);
+        mapint.put("product_id", product_id);
+        ApiBuilder.getInstance().insertId(mapint).enqueue(new Callback<Object>() {
             @Override
-            public void onResponse(Call<List<Product>> call, Response<List<Product>> response) {
-                product.setSelected(true);
-                productAdapter.notifyDataSetChanged();
+            public void onResponse(Call<Object> call, Response<Object> response) {
+
             }
 
             @Override
-            public void onFailure(Call<List<Product>> call, Throwable t) {
-                Log.e(ProductFragment.class.getName(), t.getMessage()  );
+            public void onFailure(Call<Object> call, Throwable t) {
+
             }
         });
+       
     }
-
 }

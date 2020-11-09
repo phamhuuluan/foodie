@@ -102,6 +102,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                     </TextView>
+                        <Button
+                            android:id="@+id/btn_addcard"
+                            android:layout_margin="5dp"
+                            android:background="#FA0202"
+                            android:drawablePadding="8dp"
+                            android:drawableBottom="2dp"
+                            android:drawableLeft="@drawable/shopping_cart"
+                            android:text="Add"
+                            android:textColor="#fff"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

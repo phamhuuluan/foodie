@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -17,14 +17,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.t3h.foodie.Fragment.FavoritesFragment;
 import com.t3h.foodie.Fragment.HomeFragment;
 import com.t3h.foodie.Fragment.ShoppingCartFragment;
-import com.t3h.foodie.model.ShoppingCart;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    private ImageButton btnSignOut;
+    private TextView edtSearch;
     private FirebaseAuth auth;
     private FirebaseAuth.AuthStateListener authListener;
-    private TextView edtSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,12 +90,16 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-
     @Override
     protected void onStop() {
         super.onStop();
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }

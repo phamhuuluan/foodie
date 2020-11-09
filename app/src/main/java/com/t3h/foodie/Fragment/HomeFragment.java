@@ -149,7 +149,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Cate
 
         foodFragment.setCategory(category);
         showFrament(foodFragment);
-
     }
 
 
